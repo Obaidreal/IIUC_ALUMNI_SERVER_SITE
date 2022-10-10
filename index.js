@@ -12,8 +12,10 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     await client.connect();
     const collectionOne = client.db("anas").collection("projects");
+    const collectionTwo = client.db("anas").collection("members");
     console.log('connected to mongodb');
     try {
+        // get the data from mongodb
         app.get('/details', async (req, res) => {
             const query = {};
             const cursor = collectionOne.find(query);
@@ -21,8 +23,25 @@ async function run() {
             console.log(results);
             res.send(results);
         });
+        app.get('/members', async (req, res) => {
+            const query = {};
+            const cursor = collectionTwo.find(query);
+            const results = await cursor.toArray();
+            console.log(results);
+            res.send(results);
+        });
 
 
+
+
+
+
+        // post the data in mongodb
+        app.post('/members', async (req, res) => {
+            const newMember = req.body;
+            const result = await collectionTwo.insertOne(newMember);
+            res.send(result);
+        });
 
 
     } finally {
