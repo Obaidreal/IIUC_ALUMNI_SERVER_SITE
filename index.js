@@ -13,6 +13,7 @@ async function run() {
     await client.connect();
     const collectionOne = client.db("anas").collection("projects");
     const collectionTwo = client.db("anas").collection("members");
+    const collectionThree = client.db("anas").collection("newmembers");
     const collectionUsers = client.db("anas").collection("users");
     console.log('connected to mongodb');
 
@@ -43,6 +44,13 @@ async function run() {
             console.log(results);
             res.send(results);
         });
+        app.get('/newmembers', async (req, res) => {
+            const query = {};
+            const cursor = collectionThree.find(query);
+            const results = await cursor.toArray();
+            console.log(results);
+            res.send(results);
+        });
 
         app.get('/members/:id', async (req, res) => {
             const id = req.params.id;
@@ -56,7 +64,12 @@ async function run() {
             const users = await collectionUsers.find().toArray();
             res.send(users);
         })
-
+        app.get('/admin/:email', async (req, res) => {
+            const email = req.params.email;
+            const user = await collectionUsers.findOne({ email: email });
+            const isAdmin = user.role === 'admin';
+            res.send({ admin: isAdmin })
+        })
 
 
 
@@ -65,6 +78,11 @@ async function run() {
         app.post('/members', async (req, res) => {
             const newMember = req.body;
             const result = await collectionTwo.insertOne(newMember);
+            res.send(result);
+        });
+        app.post('/newmembers', async (req, res) => {
+            const newMember = req.body;
+            const result = await collectionThree.insertOne(newMember);
             res.send(result);
         });
 
