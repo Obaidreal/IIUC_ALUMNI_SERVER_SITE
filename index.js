@@ -15,6 +15,7 @@ async function run() {
     const collectionTwo = client.db("anas").collection("members");
     const collectionThree = client.db("anas").collection("newmembers");
     const collectionUsers = client.db("anas").collection("users");
+    const collectionposts = client.db("anas").collection("posts");
     console.log('connected to mongodb');
 
     const verifyAdmin = async (req, res, next) => {
@@ -83,6 +84,11 @@ async function run() {
         app.post('/newmembers', async (req, res) => {
             const newMember = req.body;
             const result = await collectionThree.insertOne(newMember);
+            res.send(result);
+        });
+        app.post('/posts', async (req, res) => {
+            const newPost = req.body;
+            const result = await collectionposts.insertOne(newPost);
             res.send(result);
         });
 
