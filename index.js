@@ -53,6 +53,13 @@ async function run() {
             console.log(results);
             res.send(results);
         });
+        app.get('/posts', async (req, res) => {
+            const query = {};
+            const cursor = collectionposts.find(query);
+            const results = await cursor.toArray();
+            console.log(results);
+            res.send(results);
+        });
 
         app.get('/members/:id', async (req, res) => {
             const id = req.params.id;
