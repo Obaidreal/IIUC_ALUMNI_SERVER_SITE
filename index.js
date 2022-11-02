@@ -125,3 +125,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log('db connected')
 })
+
+module.exports = app;
