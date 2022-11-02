@@ -80,9 +80,6 @@ async function run() {
             res.send({ admin: isAdmin })
         })
 
-
-
-
         // post the data in mongodb
         app.post('/members', async (req, res) => {
             const newMember = req.body;
