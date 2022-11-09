@@ -105,6 +105,12 @@ async function run() {
             const result = await collectionTwo.deleteOne(query);
             res.send(result);
         });
+        app.delete('/newmembers/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await collectionThree.deleteOne(query);
+            res.send(result);
+        });
 
 
 
