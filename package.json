@@ -17,9 +17,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongodb": "^4.10.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.22"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Nabi171/pciu-server-site.git"

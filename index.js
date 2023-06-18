@@ -8,14 +8,23 @@ app.use(express.json());
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = "mongodb+srv://anas:AYEx3Rv6xtEZVVze@cluster0.v3q4mcg.mongodb.net/?retryWrites=true&w=majority";
+// const uri = "mongodb+srv://Fahim_Reza:IKTwOUAbHaShf4w8@cluster1.go1dmsx.mongodb.net/";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 async function run() {
     await client.connect();
+
     const collectionOne = client.db("anas").collection("projects");
     const collectionTwo = client.db("anas").collection("members");
     const collectionThree = client.db("anas").collection("newmembers");
     const collectionUsers = client.db("anas").collection("users");
     const collectionposts = client.db("anas").collection("posts");
+
+    // const collectionOne = client.db("iiucDB").collection("projects");
+    // const collectionTwo = client.db("iiucDB").collection("members");
+    // const collectionThree = client.db("iiucDB").collection("newmembers");
+    // const collectionUsers = client.db("iiucDB").collection("users");
+    // const collectionposts = client.db("iiucDB").collection("posts");
+
     console.log('connected to mongodb');
 
     const verifyAdmin = async (req, res, next) => {
