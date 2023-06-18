@@ -1,4 +1,5 @@
 {
+    //version update
     "version": 2,
     "name": "music-album",
     "builds": [
@@ -14,4 +15,4 @@
         }
     ] 
 }
-#updated version
+
